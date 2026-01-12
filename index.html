@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>OnTik – Indigenous Street & Training Wear</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --desert-red: #8b2e1a;
+      --burnt-orange: #c95f28;
+      --sand: #e4c08a;
+      --cream: #fff7e6;
+      --dark-brown: #2f221a;
+      --soft-brown: #5b4330;
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--cream);
+      color: var(--dark-brown);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      background: var(--burnt-orange);
+      color: var(--cream);
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      font-size: 0.95rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      background: #dd7237;
+    }
+
+    .section {
+      padding: 3.5rem 0;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--desert-red);
+    }
+
+    .section-subtitle {
+      max-width: 700px;
+      margin-bottom: 2rem;
+      color: var(--soft-brown);
+      font-size: 0.95rem;
+    }
+
+    /* Header */
+    header {
+      background: var(--desert-red);
+      color: var(--cream);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.5rem;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 1rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    nav a {
+      opacity: 0.9;
+    }
+
+    nav a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .cart-indicator {
+      font-size: 0.9rem;
+      background: rgba(0,0,0,0.15);
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+    }
+
+    /* Hero */
+    .hero {
+      background: radial-gradient(circle at top left, var(--sand), var(--cream));
+      border-bottom: 2px dotted var(--sand);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
+      gap: 2.5rem;
+      align-items: center;
+      padding: 3rem 0 3.5rem;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(139,46,26,0.1);
+      color: var(--desert-red);
+      border-radius: 999px;
+      padding: 0.25rem 0.8rem;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3vw + 1.2rem, 2.8rem);
+      margin-bottom: 0.75rem;
+      color: var(--dark-brown);
+    }
+
+    .hero-highlight {
+      color: var(--desert-red);
+      font-weight: 700;
+    }
+
+    .hero-text {
+      margin-bottom: 1.4rem;
+      color: var(--soft-brown);
+      font-size: 0.98rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      align-items: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-note {
+      font-size: 0.85rem;
+      color: var(--soft-brown);
+    }
+
+    .hero-card {
+      background: var(--cream);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+      border: 1px solid rgba(91,67,48,0.15);
+      font-size: 0.9rem;
+      color: var(--soft-brown);
+    }
+
+    .hero-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      color: var(--desert-red);
+    }
+
+    /* Shop */
+    .shop-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .shop-filter-pill {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(47,34,26,0.2);
+      background: #fffdf7;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: #fffdf7;
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid rgba(91,67,48,0.12);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      background: rgba(201,95,40,0.13);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      margin-bottom: 0.35rem;
+      color: var(--burnt-orange);
+    }
+
+    .product-name {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .product-desc {
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+      color: var(--soft-brown);
+    }
+
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .product-price {
+      font-weight: 700;
+      color: var(--desert-red);
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .about-card {
+      background: var(--sand);
+      border-radius: var(--radius);
+      padding: 1.6rem 1.4rem;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+      border: 1px solid rgba(47,34,26,0.2);
+      font-size: 0.92rem;
+    }
+
+    .about-card h3 {
+      margin-bottom: 0.5rem;
+      color: var(--dark-brown);
+    }
+
+    .about-points {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--dark-brown);
+      margin-top: 0.7rem;
+    }
+
+    .about-points li {
+      margin-bottom: 0.35rem;
+    }
+
+    .about-points li::before {
+      content: "∘ ";
+      color: var(--desert-red);
+      font-weight: 700;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.6fr);
+      gap: 1.5rem;
+    }
+
+    form {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--soft-brown);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 0.55rem 0.7rem;
+      border-radius: 8px;
+      border: 1px solid rgba(47,34,26,0.25);
+      font-size: 0.95rem;
+      background: #fffdf7;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--desert-red);
+      color: var(--cream);
+      padding: 1.5rem 0 1.7rem;
+      margin-top: 2rem;
+      border-top: 3px dotted var(--sand);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.85rem;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 850px) {
+      .hero-inner,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav ul {
+        display: none; /* simple mobile version */
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-inner {
+        padding-top: 2.25rem;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-card {
+        padding: 1.25rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">OnTik</div>
+      <nav>
+        <ul>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="cart-indicator">Cart (0)</div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="hero-tag">
+          <span>OnTik</span>
+          <span>•</span>
+          <span>Indigenous street & training wear</span>
+        </div>
+        <h1 class="hero-title">
+          OnTik –
+          <span class="hero-highlight">Indigenous street and training wear</span>
+          on and off the field.
+        </h1>
+        <p class="hero-text">
+          OnTik is Indigenous street and training wear – shirts, singlets, shorts, hoodies, crew neck
+          jumpers and track pants. Made for our mob, open to anyone who respects the story. This first
+          drop starts with a clean black oversized tee: quiet from the front, loud from the back.
+        </p>
+        <div class="hero-actions">
+          <a href="#shop" class="btn">Shop OnTik & more</a>
+          <a href="#about" style="font-size:0.9rem;text-decoration:underline;">About OnTik & Belly</a>
+        </div>
+        <p class="hero-note">
+          OnTik is about identity, culture and staying grounded – not forgetting who we are, the stories
+          and songlines that follow us wherever we go.
+        </p>
+      </div>
+
+      <aside class="hero-card">
+        <h3>What OnTik stands for</h3>
+        <p>
+          • Indigenous street and training wear created by mob.<br />
+          • Designs that respect our stories and how we identify ourselves.<br />
+          • A reminder to stay “on tick” – on your path, on your goals, backing yourself and your mob.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Shop -->
+  <section class="section" id="shop">
+    <div class="container">
+      <h2 class="section-title">Shop the collections</h2>
+      <p class="section-subtitle">
+        Print-on-demand apparel across three lines: the OnTik street and training range, Indigenous design
+        fishing shirts & work wear, and a names collection. Start here with the first OnTik hero tee.
+      </p>
+
+      <div class="shop-filters">
+        <span class="shop-filter-pill">OnTik streetwear</span>
+        <span class="shop-filter-pill">Fishing & work wear</span>
+        <span class="shop-filter-pill">Names collection</span>
+      </div>
+
+      <div class="products-grid">
+        <!-- HERO PRODUCT: OnTik Heavy Tee – Black -->
+        <article class="product-card">
+          <span class="product-tag">OnTik</span>
+          <h3 class="product-name">OnTik Heavy Tee – Black</h3>
+          <p class="product-desc">
+            Oversized mid-weight tee in black with a clean front and a bold white “OnTik” logo printed big
+            across the back. Breathable enough for training, solid enough for street – Indigenous streetwear
+            that keeps it simple but still speaks loud.
+          </p>
+          <div class="product-meta">
+            <div>
+              <div class="product-price">$XX</div>
+              <div style="font-size:0.75rem;color:var(--soft-brown);">
+                Mid-weight ~200&nbsp;gsm • Oversized fit
+              </div>
+            </div>
+            <button class="btn" type="button">Register interest</button>
+          </div>
+        </article>
+
+        <!-- Line: Fishing & work wear -->
+        <article class="product-card">
+          <span class="product-tag">Fishing shirt</span>
+          <h3 class="product-name">Desert Waters Indigenous Fishing Shirt</h3>
+          <p class="product-desc">
+            Long-sleeve fishing shirt featuring Indigenous-inspired artwork and earthy tones. Lightweight,
+            breathable and built for long days on the water or by the river.
+          </p>
+          <div class="product-meta">
+            <div>
+              <div class="product-price">$89</div>
+              <div style="font-size:0.75rem;color:var(--soft-brown);">
+                Print on demand • Sizes XS–3XL
+              </div>
+            </div>
+            <button class="btn" type="button">Add to cart</button>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <span class="product-tag">Work wear</span>
+          <h3 class="product-name">Country Work Shirt</h3>
+          <p class="product-desc">
+            Durable work shirt with Indigenous-inspired detailing. Made for tradies, community workers and
+            anyone who wants to carry culture on site.
+          </p>
+          <div class="product-meta">
+            <div>
+              <div class="product-price">$79</div>
+              <div style="font-size:0.75rem;color:var(--soft-brown);">
+                Print on demand • Hi-vis options available
+              </div>
+            </div>
+            <button class="btn" type="button">Add to cart</button>
+          </div>
+        </article>
+
+        <!-- Line: Names collection -->
+        <article class="product-card">
+          <span class="product-tag">Names collection</span>
+          <h3 class="product-name">Names Tee</h3>
+          <p class="product-desc">
+            Clean tee design featuring an Indigenous place or name on the chest. Simple, respectful and made
+            to spark yarns about where you’re from and who you walk with.
+          </p>
+          <div class="product-meta">
+            <div>
+              <div class="product-price">$49</div>
+              <div style="font-size:0.75rem;color:var(--soft-brown);">
+                Multiple names • Sizes S–3XL
+              </div>
+            </div>
+            <button class="btn" type="button">Add to cart</button>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <span class="product-tag">Names collection</span>
+          <h3 class="product-name">Names Hoodie</h3>
+          <p class="product-desc">
+            Warm hoodie with an Indigenous name across the front and subtle colour details. Perfect for
+            evenings, sport and community events.
+          </p>
+          <div class="product-meta">
+            <div>
+              <div class="product-price">$89</div>
+              <div style="font-size:0.75rem;color:var(--soft-brown);">
+                Unisex fit • Print on demand
+              </div>
+            </div>
+            <button class="btn" type="button">Add to cart</button>
+          </div>
+        </article>
+
+        <!-- Line: OnTik other pieces -->
+        <article class="product-card">
+          <span class="product-tag">OnTik</span>
+          <h3 class="product-name">OnTik Training Singlet</h3>
+          <p class="product-desc">
+            Lightweight singlet with the OnTik branding and a colour palette that works on court, oval or in
+            the gym. Built to keep you cool while you put in the work.
+          </p>
+          <div class="product-meta">
+            <div>
+              <div class="product-price">$39</div>
+              <div style="font-size:0.75rem;color:var(--soft-brown);">
+                Print on demand • Sizes XS–3XL
+              </div>
+            </div>
+            <button class="btn" type="button">Add to cart</button>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <span class="product-tag">OnTik</span>
+          <h3 class="product-name">OnTik Shorts</h3>
+          <p class="product-desc">
+            Comfortable shorts in OnTik style – great for sport, gym or everyday wear. Elastic waist with
+            drawstring and space to move.
+          </p>
+          <div class="product-meta">
+            <div>
+              <div class="product-price">$45</div>
+              <div style="font-size:0.75rem;color:var(--soft-brown);">
+                Street & sport • Sizes S–3XL
+              </div>
+            </div>
+            <button class="btn" type="button">Add to cart</button>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <span class="product-tag">OnTik</span>
+          <h3 class="product-name">OnTik Track Pants</h3>
+          <p class="product-desc">
+            Tapered track pants with OnTik branding. Made for training, travel and chilling – pair them with
+            the tee or hoodie for a full OnTik fit.
+          </p>
+          <div class="product-meta">
+            <div>
+              <div class="product-price">$69</div>
+              <div style="font-size:0.75rem;color:var(--soft-brown);">
+                Jogger style • Sizes S–3XL
+              </div>
+            </div>
+            <button class="btn" type="button">Add to cart</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- About OnTik & Belly -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title">About OnTik</h2>
+      <p class="section-subtitle">
+        OnTik is Indigenous street and training wear – created by mob, for mob, and open to anyone who
+        respects the story.
+      </p>
+
+      <div class="about-grid">
+        <!-- OnTik brand story -->
+        <div class="about-card">
+          <h3>OnTik – Indigenous street and training wear</h3>
+          <p>
+            OnTik is my clothing brand about how we identify ourselves – who we are as Aboriginal and
+            Torres Strait Islander mob, who we walk with and where we come from. It’s about culture, staying
+            grounded and not forgetting who we are – the stories and songlines that follow us wherever we go.
+          </p>
+
+          <p style="margin-top:0.7rem;">
+            <strong>OnTik is about more than just looking fresh – it’s about staying on your path.</strong>
+          </p>
+          <p style="margin-top:0.4rem;">
+            Created by a local Arrernte man from Central Australia, OnTik was dreamed up with our mob in
+            mind. Too often our people are wearing big overseas brands that don’t know our Country, our
+            colours or our story. OnTik flips that – bringing those stories and that pride onto streetwear
+            and training gear that actually fits our lifestyles.
+          </p>
+          <p style="margin-top:0.4rem;">
+            Shirts, singlets, shorts, hoodies, crew neck jumpers and track pants are all printed on demand,
+            meaning less waste and more flexibility for clubs, teams and communities. Whether you’re at
+            training, at the shops or just chilling with family, OnTik is a reminder to stay “on tick” –
+            staying ready, staying focused and backing yourself and your mob every day.
+          </p>
+        </div>
+
+        <!-- About Belly / store context -->
+        <div>
+          <h3 style="margin-bottom:0.4rem;">About Belly</h3>
+          <p style="font-size:0.92rem;margin-bottom:0.7rem;">
+            I’m Nathan, also known as Belly – a local Arrernte man from Central Australia. My heart is in
+            closing the gap for Aboriginal people, especially our young mob. Through my Walk The Talk program
+            I share lived experience and create spaces for youth to feel seen, valued and safe to yarn. OnTik
+            is a separate lane focused on apparel, but it carries that same heart for culture, community and
+            our young ones.
+          </p>
+          <ul class="about-points">
+            <li>Indigenous street and training wear made to be worn hard, not just looked at.</li>
+            <li>Print-on-demand – no big stock needed, each piece is made when ordered.</li>
+            <li>Room to grow into fishing shirts, work wear and more as the brand builds.</li>
+            <li>Built to give our mob something of our own to wear – not just overseas logos.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact & wholesale enquiries</h2>
+      <p class="section-subtitle">
+        Use this form if you have questions about orders, bulk/wholesale for clubs or workplaces, or want to
+        yarn about custom designs and colours for your community or team.
+      </p>
+
+      <div class="contact-grid">
+        <div>
+          <form>
+            <div>
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your name" />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="you@example.com" />
+            </div>
+            <div>
+              <label for="topic">What’s this about?</label>
+              <input id="topic" type="text" placeholder="Order, wholesale, club merch, etc." />
+            </div>
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Share a bit about what you’re looking for."></textarea>
+            </div>
+            <button class="btn" type="submit">Send message</button>
+          </form>
+        </div>
+        <div>
+          <p style="font-size:0.95rem;margin-bottom:0.8rem;">
+            You can update these details with your real contact info anytime:
+          </p>
+          <ul class="about-points">
+            <li>Email: <strong>orders@ontik.example</strong></li>
+            <li>Instagram: <strong>@ontik.example</strong></li>
+            <li>Facebook: <strong>OnTik Clothing</strong></li>
+          </ul>
+          <p style="font-size:0.85rem;margin-top:1rem;color:var(--soft-brown);">
+            Note: This shop isn’t a crisis service. If you or someone you know is in immediate danger
+            or needs urgent support, contact local emergency services or your nearest crisis line.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        © <span id="year"></span> OnTik. Indigenous street and training wear.
+      </div>
+      <div class="footer-links">
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
